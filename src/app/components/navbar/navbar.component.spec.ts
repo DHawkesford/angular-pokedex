@@ -20,4 +20,9 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('renders a header element', () => {
+    let header = fixture.nativeElement.querySelector("header");
+    expect(header).not.toBeNull();
+  });
 });
