@@ -23,6 +23,6 @@ describe('NavbarComponent', () => {
 
   it('renders a header element', () => {
     let header = fixture.nativeElement.querySelector("header");
-    expect(header).not.toBeNull();
+    expect(header).toBeTruthy();
   });
 });
