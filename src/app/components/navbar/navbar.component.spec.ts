@@ -30,4 +30,9 @@ describe('NavbarComponent', () => {
     let logo = fixture.nativeElement.querySelector("img#logo");
     expect(logo).toBeTruthy();
   })
+
+  it("renders the logo with the correct src", () => {
+    let logo = fixture.nativeElement.querySelector("img#logo");
+    expect(logo.src).toContain('assets/images/pokedex-logo.png');
+  })
 });
