@@ -21,8 +21,8 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('renders a header element', () => {
-    let header = fixture.nativeElement.querySelector("header");
+  it('renders a nav element', () => {
+    let header = fixture.nativeElement.querySelector("nav");
     expect(header).toBeTruthy();
   });
 
