@@ -25,4 +25,9 @@ describe('NavbarComponent', () => {
     let header = fixture.nativeElement.querySelector("header");
     expect(header).toBeTruthy();
   });
+
+  it("renders an img with an id of logo", () => {
+    let logo = fixture.nativeElement.querySelector("img#logo");
+    expect(logo).toBeTruthy();
+  })
 });

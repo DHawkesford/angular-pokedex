@@ -24,8 +24,4 @@ describe('AppComponent', () => {
   it('creates', () => {
     expect(component).toBeTruthy();
   });
-
-  it("renders a navbar component", () => {
-    
-  })
 });
