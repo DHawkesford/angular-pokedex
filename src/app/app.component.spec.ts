@@ -3,6 +3,7 @@
 // export {};
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
@@ -10,9 +11,13 @@ describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
+  @Component({selector: 'app-navbar', template: ''})
+  class NavbarStubComponent {
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AppComponent ]
+      declarations: [ AppComponent, NavbarStubComponent ]
     })
     .compileComponents();
 
@@ -24,4 +29,9 @@ describe('AppComponent', () => {
   it('creates', () => {
     expect(component).toBeTruthy();
   });
+
+  it("renders a navbar", () => {
+    let nav = fixture.nativeElement.querySelector("app-navbar");
+    expect(nav).toBeTruthy();
+  })
 });
