@@ -9,11 +9,6 @@
     "test": "ng test --no-watch",
     "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "echo \"[Husky] pre-commit\""
-    }
-  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.0.0",
