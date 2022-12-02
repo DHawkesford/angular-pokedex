@@ -4,6 +4,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
 
@@ -15,9 +16,16 @@ describe('AppComponent', () => {
   class NavbarStubComponent {
   }
 
+  @Component({selector: 'app-pokemon-list', template: ''})
+  class PokemonListStubComponent {
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AppComponent, NavbarStubComponent ]
+      declarations: [ AppComponent, NavbarStubComponent ],
+      imports: [ RouterTestingModule.withRoutes(
+        [{ path: '', component: PokemonListStubComponent }]
+      )]
     })
     .compileComponents();
 
