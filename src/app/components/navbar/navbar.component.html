@@ -1,8 +1,8 @@
 <nav>
-  <img *ngIf="!logoSrcBroken; else useLogoText" id="logo" [src]="logoSrc" (error)="onImgError($event)"/>
+  <img *ngIf="!brokenImages['logo']; else useLogoText" id="logo" [src]="logoSrc" (error)="onImgError($event)"/>
   <ng-template #useLogoText>
     <span id="logo">Pokédex</span>
   </ng-template>
 
-  <img *ngIf="!repoSrcBroken" id="repo" [src]="repoSrc" (error)="onRepoImgError($event)" />
+  <img *ngIf="!brokenImages['repo']" id="repo" [src]="repoSrc" (error)="onImgError($event)" />
 </nav>

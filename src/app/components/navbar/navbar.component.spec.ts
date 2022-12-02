@@ -50,21 +50,21 @@ describe('NavbarComponent', () => {
   })
 
   it("does not render the logo if the image link is broken", () => {
-    component.logoSrcBroken = true;
+    component.brokenImages["logo"] = true;
     fixture.detectChanges();
     logo = fixture.nativeElement.querySelector("img#logo");
     expect(logo).toBeFalsy();
   })
 
   it("does not render the repo image if the image link is broken", () => {
-    component.repoSrcBroken = true;
+    component.brokenImages["repo"] = true;
     fixture.detectChanges();
     repo = fixture.nativeElement.querySelector("img#repo");
     expect(repo).toBeFalsy();
   })
 
   function breakImageLink() {
-    component.logoSrcBroken = true;
+    component.brokenImages["logo"] = true;
     fixture.detectChanges();
     logoText = fixture.nativeElement.querySelector("span#logo");
   }

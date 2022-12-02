@@ -7,18 +7,16 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   logoSrc: string = "../../../assets/images/pokedex-logo.png";
-  logoSrcBroken: boolean = false;
-  
   repoSrc: string = "../../../assets/images/github-logo.png";
-  repoSrcBroken: boolean = false;
 
-  onImgError(error: Event) {
-    console.error(error);
-    this.logoSrcBroken = true;
+  brokenImages: { [key: string]: boolean } = {
+    logo: false,
+    repo: false
   }
-
-  onRepoImgError(error: Event) {
+  
+  onImgError(error: ErrorEvent) {
     console.error(error);
-    this.logoSrcBroken = true;
+    const target = error.target as HTMLElement;
+    this.brokenImages[target.id] = true;
   }
 }
