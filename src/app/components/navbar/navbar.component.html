@@ -4,5 +4,8 @@
     <span id="logo">Pokédex</span>
   </ng-template>
 
-  <img *ngIf="!brokenImages['repo']" id="repo" [src]="repoSrc" (error)="onImgError($event)" />
-</nav>
+  <img *ngIf="!brokenImages['repo']; else useRepoText" id="repo" [src]="repoSrc" (error)="onImgError($event)" />
+  <ng-template #useRepoText>
+    <span id="repo">GitHub repo</span>
+  </ng-template>
+</nav>  
