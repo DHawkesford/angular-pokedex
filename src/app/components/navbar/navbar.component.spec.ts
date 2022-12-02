@@ -45,6 +45,10 @@ describe('NavbarComponent', () => {
     expect(logo.src).toContain('assets/images/pokedex-logo.png');
   })
 
+  it("renders the repo image with the correct src", () => {
+    expect(repo.src).toContain('assets/images/github-logo.png');
+  })
+
   it("does not render the logo if the image link is broken", () => {
     component.logoSrcBroken = true;
     fixture.detectChanges();

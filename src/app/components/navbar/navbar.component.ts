@@ -9,6 +9,8 @@ export class NavbarComponent {
   logoSrc: string = "../../../assets/images/pokedex-logo.png";
   logoSrcBroken: boolean = false;
 
+  repoSrc: string = "../../../assets/images/github-logo.png";
+
   onImgError(error: Event) {
     console.error(error);
     this.logoSrcBroken = true;
