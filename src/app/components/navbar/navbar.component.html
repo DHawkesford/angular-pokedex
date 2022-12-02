@@ -1,3 +1,4 @@
 <nav>
-  <img *ngIf="!logoSrcBroken" id="logo" [src]="logoSrc" (error)="onImgError($event)"/>
+  <img *ngIf="!logoSrcBroken; else useLogoText" id="logo" [src]="logoSrc" (error)="onImgError($event)"/>
+  <ng-template #useLogoText><span id="logo"></span></ng-template>
 </nav>

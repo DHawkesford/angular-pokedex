@@ -44,4 +44,11 @@ describe('NavbarComponent', () => {
     logo = fixture.nativeElement.querySelector("img#logo");
     expect(logo).toBeFalsy();
   })
+
+  it("renders text instead, if the image link is broken", () => {
+    component.logoSrcBroken = true;
+    fixture.detectChanges();
+    const logoText = fixture.nativeElement.querySelector("span#logo");
+    expect(logoText).toBeTruthy(); 
+  })
 });
