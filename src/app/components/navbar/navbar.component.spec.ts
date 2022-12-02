@@ -7,6 +7,7 @@ describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
   let logo: HTMLImageElement;
+  let logoText: HTMLSpanElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -45,17 +46,19 @@ describe('NavbarComponent', () => {
     expect(logo).toBeFalsy();
   })
 
-  it("renders text instead, if the logo image link is broken", () => {
+  function breakImageLink() {
     component.logoSrcBroken = true;
     fixture.detectChanges();
-    const logoText = fixture.nativeElement.querySelector("span#logo");
+    logoText = fixture.nativeElement.querySelector("span#logo");
+  }
+
+  it("renders text instead, if the logo image link is broken", () => {
+    breakImageLink();
     expect(logoText).toBeTruthy(); 
   })
 
   it("renders the site name if the image link is broken", () => {
-    component.logoSrcBroken = true;
-    fixture.detectChanges();
-    const logoText = fixture.nativeElement.querySelector("span#logo");
+    breakImageLink();
     expect(logoText.innerText).toBe("Pokédex");
   })
 });
