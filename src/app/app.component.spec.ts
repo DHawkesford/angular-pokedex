@@ -34,4 +34,9 @@ describe('AppComponent', () => {
     let nav = fixture.nativeElement.querySelector("app-navbar");
     expect(nav).toBeTruthy();
   })
+
+  it("renders a main element" ,() => {
+    let main = fixture.nativeElement.querySelector("main");
+    expect(main).toBeTruthy();
+  })
 });

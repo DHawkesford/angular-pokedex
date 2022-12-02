@@ -76,7 +76,6 @@ describe('NavbarComponent', () => {
 
   it("renders text instead, if an image link is broken", () => {
     breakImageLinks();
-    console.log(imagesText)
     imagesText.forEach(ele => {
       expect(ele).toBeTruthy(); 
     });
