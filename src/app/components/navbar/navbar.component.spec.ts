@@ -8,6 +8,7 @@ describe('NavbarComponent', () => {
   let fixture: ComponentFixture<NavbarComponent>;
   let logo: HTMLImageElement;
   let logoText: HTMLSpanElement;
+  let repo: HTMLImageElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,9 +21,10 @@ describe('NavbarComponent', () => {
     fixture.detectChanges();
 
     logo = fixture.nativeElement.querySelector("img#logo");
+    repo = fixture.nativeElement.querySelector("img#repo");
   });
 
-  it('should create', () => {
+  it('creates', () => {
     expect(component).toBeTruthy();
   });
 
@@ -33,6 +35,10 @@ describe('NavbarComponent', () => {
 
   it("renders an img with an id of logo", () => {
     expect(logo).toBeTruthy();
+  })
+
+  it("renders an img with an id of repo", () => {
+    expect(repo).toBeTruthy();
   })
 
   it("renders the logo with the correct src", () => {
