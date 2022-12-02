@@ -56,6 +56,13 @@ describe('NavbarComponent', () => {
     expect(logo).toBeFalsy();
   })
 
+  it("does not render the repo image if the image link is broken", () => {
+    component.repoSrcBroken = true;
+    fixture.detectChanges();
+    repo = fixture.nativeElement.querySelector("img#repo");
+    expect(repo).toBeFalsy();
+  })
+
   function breakImageLink() {
     component.logoSrcBroken = true;
     fixture.detectChanges();

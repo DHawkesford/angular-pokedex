@@ -8,10 +8,16 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
   logoSrc: string = "../../../assets/images/pokedex-logo.png";
   logoSrcBroken: boolean = false;
-
+  
   repoSrc: string = "../../../assets/images/github-logo.png";
+  repoSrcBroken: boolean = false;
 
   onImgError(error: Event) {
+    console.error(error);
+    this.logoSrcBroken = true;
+  }
+
+  onRepoImgError(error: Event) {
     console.error(error);
     this.logoSrcBroken = true;
   }
