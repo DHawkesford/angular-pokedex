@@ -1,4 +1,6 @@
 <nav>
   <img *ngIf="!logoSrcBroken; else useLogoText" id="logo" [src]="logoSrc" (error)="onImgError($event)"/>
-  <ng-template #useLogoText><span id="logo"></span></ng-template>
+  <ng-template #useLogoText>
+    <span id="logo">Pokédex</span>
+  </ng-template>
 </nav>

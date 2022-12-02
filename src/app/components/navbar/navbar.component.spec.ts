@@ -45,10 +45,17 @@ describe('NavbarComponent', () => {
     expect(logo).toBeFalsy();
   })
 
-  it("renders text instead, if the image link is broken", () => {
+  it("renders text instead, if the logo image link is broken", () => {
     component.logoSrcBroken = true;
     fixture.detectChanges();
     const logoText = fixture.nativeElement.querySelector("span#logo");
     expect(logoText).toBeTruthy(); 
+  })
+
+  it("renders the site name if the image link is broken", () => {
+    component.logoSrcBroken = true;
+    fixture.detectChanges();
+    const logoText = fixture.nativeElement.querySelector("span#logo");
+    expect(logoText.innerText).toBe("Pokédex");
   })
 });
