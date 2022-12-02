@@ -35,4 +35,9 @@ describe('NavbarComponent', () => {
     let logo = fixture.nativeElement.querySelector("img#logo");
     expect(logo.src).toContain('assets/images/pokedex-logo.png');
   })
+
+  it("does not render the logo if the image link is broken", () => {
+    component.logoSrc = "../../../assets/images/imageThatDoesNotExist.png";
+    expect(component.logoSrcBroken).toBeFalse();
+  })
 });
