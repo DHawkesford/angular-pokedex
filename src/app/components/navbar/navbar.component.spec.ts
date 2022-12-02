@@ -1,3 +1,4 @@
+import { createPlatform } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
@@ -5,6 +6,7 @@ import { NavbarComponent } from './navbar.component';
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
+  let logo: HTMLImageElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,6 +17,8 @@ describe('NavbarComponent', () => {
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    logo = fixture.nativeElement.querySelector("img#logo");
   });
 
   it('should create', () => {
@@ -27,17 +31,17 @@ describe('NavbarComponent', () => {
   });
 
   it("renders an img with an id of logo", () => {
-    let logo = fixture.nativeElement.querySelector("img#logo");
     expect(logo).toBeTruthy();
   })
 
   it("renders the logo with the correct src", () => {
-    let logo = fixture.nativeElement.querySelector("img#logo");
     expect(logo.src).toContain('assets/images/pokedex-logo.png');
   })
 
   it("does not render the logo if the image link is broken", () => {
-    component.logoSrc = "../../../assets/images/imageThatDoesNotExist.png";
-    expect(component.logoSrcBroken).toBeFalse();
+    component.logoSrcBroken = true;
+    fixture.detectChanges();
+    logo = fixture.nativeElement.querySelector("img#logo");
+    expect(logo).toBeFalsy();
   })
 });
