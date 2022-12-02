@@ -14,9 +14,13 @@ export class NavbarComponent {
     repo: false
   }
   
-  onImgError(error: ErrorEvent) {
+  onImgError(error: ErrorEvent): void {
     console.error(error);
     const target = error.target as HTMLElement;
     this.brokenImages[target.id] = true;
+  }
+
+  openRepo(): void {
+    window.open("https://github.com/DHawkesford/angular-pokedex", "_blank");
   }
 }

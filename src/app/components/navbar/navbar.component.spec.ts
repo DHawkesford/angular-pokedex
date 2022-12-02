@@ -67,7 +67,6 @@ describe('NavbarComponent', () => {
 
   function breakImageLinks() {
     Object.keys(component.brokenImages).forEach(key => component.brokenImages[key] = true);
-    console.log(component.brokenImages)
     fixture.detectChanges();
     logoText = fixture.nativeElement.querySelector("span#logo");
     repoText = fixture.nativeElement.querySelector("span#repo");
@@ -89,5 +88,14 @@ describe('NavbarComponent', () => {
   it("renders 'GitHub repo' if the repo image link is broken", () => {
     breakImageLinks();
     expect(repoText.innerText).toBe("GitHub repo");
+  })
+
+  it("links to the GitHub repo", () => {
+    const spy = spyOn(window, "open").and.callThrough();
+    const link = fixture.debugElement.nativeElement.querySelector("a#repoLink");
+    console.log(fixture.debugElement.nativeElement.querySelector("a#repoLink"));
+    // link.triggerEventHandler("click");
+    link.click();
+    expect(spy).toHaveBeenCalled();
   })
 });

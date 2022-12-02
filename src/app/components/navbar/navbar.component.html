@@ -3,9 +3,11 @@
   <ng-template #useLogoText>
     <span id="logo">Pokédex</span>
   </ng-template>
-
-  <img *ngIf="!brokenImages['repo']; else useRepoText" id="repo" [src]="repoSrc" (error)="onImgError($event)" />
-  <ng-template #useRepoText>
-    <span id="repo">GitHub repo</span>
-  </ng-template>
+  
+  <a id="repoLink" (click)="openRepo()">
+    <img *ngIf="!brokenImages['repo']; else useRepoText" id="repo" [src]="repoSrc" (error)="onImgError($event)" />
+    <ng-template #useRepoText>
+      <span id="repo">GitHub repo</span>
+    </ng-template>
+  </a>
 </nav>  
