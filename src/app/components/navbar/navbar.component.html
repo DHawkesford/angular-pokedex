@@ -1,8 +1,10 @@
 <nav class="navbar navbar-expand-md">
-  <img *ngIf="!brokenImages['logo']; else useLogoText" id="logo" [src]="logoSrc" (error)="onImgError($event)"/>
-  <ng-template #useLogoText>
-    <span id="logo">Pokédex</span>
-  </ng-template>
+  <a id="logoLink" [routerLink]="'/'">
+    <img *ngIf="!brokenImages['logo']; else useLogoText" id="logo" [src]="logoSrc" (error)="onImgError($event)"/>
+    <ng-template #useLogoText>
+      <span id="logo">Pokédex</span>
+    </ng-template>
+  </a>
   
   <a id="repoLink" (click)="openRepo()">
     <img *ngIf="!brokenImages['repo']; else useRepoText" id="repo" [src]="repoSrc" (error)="onImgError($event)" />
