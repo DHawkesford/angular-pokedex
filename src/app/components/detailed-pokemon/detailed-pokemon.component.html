@@ -1,1 +1,20 @@
-<p>detailed-pokemon works!</p>
+<span>{{details.id}}</span>
+<span>{{details.name}}</span>
+<div>
+  <li *ngFor="let type of details.types">
+    {{type.type.name}}
+  </li>
+</div>
+<div>
+  <li *ngFor="let ability of details.abilities">
+    {{ability.ability.name}}
+  </li>
+</div>
+<div>
+  <li *ngFor="let stat of details.stats">
+    {{stat.stat.name}}: {{stat.base_stat}}
+  </li>
+</div>
+<span>Height: {{details.height}}</span>
+<span>Weight: {{details.weight}}</span>
+<img src={{details.image}} />
