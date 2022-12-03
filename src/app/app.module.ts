@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonTileComponent } from './components/pokemon-list/pokemon-tile/pokemon-tile.component';
+import { DetailedPokemonComponent } from './components/detailed-pokemon/detailed-pokemon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     PokemonListComponent,
-    PokemonTileComponent
+    PokemonTileComponent,
+    DetailedPokemonComponent
   ],
   imports: [
     BrowserModule,

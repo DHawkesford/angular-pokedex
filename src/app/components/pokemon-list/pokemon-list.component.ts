@@ -19,7 +19,7 @@ export class PokemonListComponent {
 
   constructor(private http: HttpClient) { }
 
-  private pokemonUrl = "https://pokeapi.co/api/v2/pokemon"
+  private pokemonUrl = "https://pokeapi.co/api/v2/pokemon?limit=20"
 
   ngOnInit(): void {
     this.getPokemons();
