@@ -1,15 +1,17 @@
-<nav class="navbar navbar-expand-md">
-  <a id="logoLink" [routerLink]="'/'">
-    <img *ngIf="!brokenImages['logo']; else useLogoText" id="logo" [src]="logoSrc" (error)="onImgError($event)"/>
-    <ng-template #useLogoText>
-      <span id="logo">Pokédex</span>
-    </ng-template>
-  </a>
-  
-  <a id="repoLink" (click)="openRepo()">
-    <img *ngIf="!brokenImages['repo']; else useRepoText" id="repo" [src]="repoSrc" (error)="onImgError($event)" />
-    <ng-template #useRepoText>
-      <span id="repo">GitHub repo</span>
-    </ng-template>
-  </a>
+<nav class="navbar navbar-expand-md fixed-top bg-margins" style="height: 50px" >
+  <div class="container-fluid" class="h-100 w-100 d-flex flex-row justify-content-between">
+    <a id="logoLink" [routerLink]="'/'">
+      <img *ngIf="!brokenImages['logo']; else useLogoText" id="logo" [src]="logoSrc" (error)="onImgError($event)" class="h-100 ms-2" />
+      <ng-template #useLogoText>
+        <span id="logo">Pokédex</span>
+      </ng-template>
+    </a>
+    
+    <a id="repoLink" (click)="openRepo()" class="pe-auto" role="button">
+      <img *ngIf="!brokenImages['repo']; else useRepoText" id="repo" [src]="repoSrc" (error)="onImgError($event)" class="h-100 me-2" />
+      <ng-template #useRepoText>
+        <span id="repo">GitHub repo</span>
+      </ng-template>
+    </a>
+  </div>
 </nav>  
