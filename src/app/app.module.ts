@@ -8,6 +8,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonTileComponent } from './components/pokemon-list/pokemon-tile/pokemon-tile.component';
 import { DetailedPokemonComponent } from './components/detailed-pokemon/detailed-pokemon.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DetailedPokemonComponent } from './components/detailed-pokemon/detailed
     NavbarComponent,
     PokemonListComponent,
     PokemonTileComponent,
-    DetailedPokemonComponent
+    DetailedPokemonComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
