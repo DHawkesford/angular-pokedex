@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 interface Pokemons {
   count: number;
@@ -16,12 +17,22 @@ interface Pokemons {
 })
 export class PokemonListComponent {
   pokemons: any;
+  page: number = 1;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {}
 
-  private pokemonUrl = "https://pokeapi.co/api/v2/pokemon?limit=20"
+  private pokemonUrl = "https://pokeapi.co/api/v2/pokemon?limit=50&offset="
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['page']) {
+        this.page = params['page'];
+      };
+    });
+    this.pokemonUrl += `${50 * (this.page - 1)}`
     this.getPokemons();
   }
   
