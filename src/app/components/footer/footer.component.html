@@ -1,5 +1,5 @@
 <ul id="pages">
   <li class="page" *ngFor="let page of pagesArray">
-    <button>{{page}}</button>
+    <a [routerLink]="'/'" [queryParams]="{ page: page + 1 }">{{page + 1}}</a>
   </li>
 </ul>

@@ -31,13 +31,15 @@ export class PokemonListComponent {
       if (params['page']) {
         this.page = params['page'];
       };
+      const offset = 50 * (this.page - 1);
+      this.getPokemons(offset);
     });
-    this.pokemonUrl += `${50 * (this.page - 1)}`
-    this.getPokemons();
   }
   
-  getPokemons(): void {
-    this.http.get<Pokemons>(this.pokemonUrl)
-    .subscribe(response => this.pokemons = response.results);    
+  getPokemons(offset: number): void {
+    this.http.get<Pokemons>(this.pokemonUrl + offset)
+    .subscribe(response => {
+      this.pokemons = response.results
+    });  
   };
 }
