@@ -7,7 +7,7 @@
       </ng-template>
     </a>
     
-    <a id="repoLink" (click)="openRepo()" class="pe-auto" role="button">
+    <a id="repoLink" (click)="openRepo()" class="pe-auto" role="button" title="Check out the GitHub repo">
       <img *ngIf="!brokenImages['repo']; else useRepoText" id="repo" [src]="repoSrc" (error)="onImgError($event)" class="h-100 me-2" />
       <ng-template #useRepoText>
         <span id="repo">GitHub repo</span>
