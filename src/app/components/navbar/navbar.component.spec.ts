@@ -91,10 +91,9 @@ describe('NavbarComponent', () => {
   })
 
   it("links to the GitHub repo", () => {
-    const spy = spyOn(window, "open").and.callThrough();
+    const spy = spyOn(window, "open");
     const link = fixture.debugElement.nativeElement.querySelector("a#repoLink");
     console.log(fixture.debugElement.nativeElement.querySelector("a#repoLink"));
-    // link.triggerEventHandler("click");
     link.click();
     expect(spy).toHaveBeenCalled();
   })
