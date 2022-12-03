@@ -76,8 +76,10 @@ export class DetailedPokemonComponent {
   abilities!: string[];
   weight!: string;
   height!: string;
-  
-  backgroundColourByType: { [key: string]: string } = {
+  backgroundColourByType!: string;
+  image!: string;
+
+  typeColours: { [key: string]: string } = {
     normal: "#A8A77A",
     fire: "#EE8130",
     water: "#6390F0",
@@ -132,7 +134,7 @@ export class DetailedPokemonComponent {
     )
     .subscribe(response => {
       this.details = response
-      this.details.image = response.sprites.other["official-artwork"].front_default;
+      this.image = response.sprites.other["official-artwork"].front_default;
       this.details.id = this.padNumber(response.id)
       this.types = response.types.map(type => 
         type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)
@@ -152,6 +154,7 @@ export class DetailedPokemonComponent {
         ${height} m
         (${feet}'${(inches - feet * 12).toFixed(1)}")
       `
+      this.backgroundColourByType = this.typeColours[this.details.types[0].type.name]
     });     
   };
 }
