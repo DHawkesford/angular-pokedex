@@ -8,7 +8,7 @@
       [ngClass]="
         (page + 1).toString() === currentPage 
         || 
-        (currentPage === undefined && page + 1 === 1)
+        (url === '/' && page + 1 === 1)
         ? 'current-page' : ''
       "
     >
