@@ -1,20 +1,41 @@
-<span>{{details.id}}</span>
-<span>{{details.name}}</span>
-<div>
-  <li *ngFor="let type of details.types">
-    {{type.type.name}}
-  </li>
+<div 
+  class="container-fluid text-white fw-bold"
+  [ngStyle]="{'background-color': backgroundColourByType[details.types[0].type.name]}"
+>
+  <div class="container w-75 d-flex flex-column align-items-center">
+    <div class="d-flex flex-column rounded p-2 mt-2" style="background-color: rgba(49, 49, 49, 0.3);">
+      <span>{{details.id}}</span>
+      <span>{{name}}</span>
+    </div>
+    <img src={{details.image}} />
+    <div class="d-flex flex-row">
+      <div class="d-flex flex-row rounded m-1" style="background-color: rgba(49, 49, 49, 0.3);">
+        <div class="d-flex flex-column p-2 m-1">
+          <span>Types</span>
+          <span>Height</span>
+          <span>Weight</span>
+          <span>Abilities</span>
+        </div>
+        <div class="d-flex flex-column p-2 m-1">
+          <span>{{types}}</span>
+          <span>{{details.height}}</span>
+          <span>{{details.weight}}</span>
+          <span>{{abilities}}</span>
+        </div>
+      </div>
+      <div class="d-flex flex-row rounded m-1" style="background-color: rgba(49, 49, 49, 0.3);">
+        <div class="d-flex flex-column p-2 m-1">
+          <span>HP</span>
+          <span>Attack</span>
+          <span>Defense</span>
+          <span>Special Attack</span>
+          <span>Special Defense</span>
+          <span>Speed</span>
+        </div>
+        <div class="d-flex flex-column p-2 m-1">
+          <span *ngFor="let stat of details.stats">{{stat.base_stat}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div>
-  <li *ngFor="let ability of details.abilities">
-    {{ability.ability.name}}
-  </li>
-</div>
-<div>
-  <li *ngFor="let stat of details.stats">
-    {{stat.stat.name}}: {{stat.base_stat}}
-  </li>
-</div>
-<span>Height: {{details.height}}</span>
-<span>Weight: {{details.weight}}</span>
-<img src={{details.image}} />

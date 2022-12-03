@@ -21,7 +21,8 @@ export class PokemonListComponent {
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   private pokemonUrl = "https://pokeapi.co/api/v2/pokemon?limit=50&offset="
@@ -40,6 +41,9 @@ export class PokemonListComponent {
     this.http.get<Pokemons>(this.pokemonUrl + offset)
     .subscribe(response => {
       this.pokemons = response.results
+      if (response.results.length === 0) {
+        this.router.navigate([''], { queryParams: {page: 24} })
+      }
     });  
   };
 }
