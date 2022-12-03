@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError } from "rxjs/operators";
 
 interface Pokemon {
   abilities: { ability: { name: string, url: string }}[],
@@ -99,12 +100,16 @@ export class DetailedPokemonComponent {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("id")!;
+    if (isNaN(Number(this.id))) {
+      this.router.navigate([''], { queryParams: {page: 1} })
+    }
     this.getDetails(this.id);
   }
   
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   padNumber(id: number | string) {
@@ -115,7 +120,14 @@ export class DetailedPokemonComponent {
   }
 
   getDetails(id: string): void {
-    this.http.get<Pokemon>(this.pokemonUrl + id)
+    this.http
+    .get<Pokemon>(this.pokemonUrl + id)
+    .pipe(
+      catchError(err => {
+        this.router.navigate([''], { queryParams: {page: 1} })
+        throw 'Error:' + err;
+      })
+    )
     .subscribe(response => {
       this.details = response
       this.details.image = response.sprites.other["official-artwork"].front_default;
