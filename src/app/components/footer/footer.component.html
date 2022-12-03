@@ -1,5 +1,18 @@
-<ul id="pages">
-  <li class="page" *ngFor="let page of pagesArray">
-    <a [routerLink]="'/'" [queryParams]="{ page: page + 1 }">{{page + 1}}</a>
-  </li>
-</ul>
+<footer class="footer fixed-bottom bg-margins mb-0">
+  <div class="container-fluid d-flex flex-row justify-content-around w-75">
+    <a 
+      *ngFor="let page of pagesArray" 
+      [routerLink]="'/'" 
+      [queryParams]="{ page: page + 1 }" 
+      class="page text-white page-button p-1 my-1 rounded fw-bold text-center"
+      [ngClass]="
+        (page + 1).toString() === currentPage 
+        || 
+        (currentPage === undefined && page + 1 === 1)
+        ? 'current-page' : ''
+      "
+    >
+      {{page + 1}}
+    </a>
+  </div>
+</footer>
