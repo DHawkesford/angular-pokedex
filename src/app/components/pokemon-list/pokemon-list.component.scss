@@ -1,6 +1,7 @@
 .bg-main {
   background: #2A75BB;
-  min-height: 100vh;
+  min-height: calc(100vh - 90px);
+  margin-top: 50px;
 }
 
 ul {

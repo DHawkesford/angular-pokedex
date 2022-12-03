@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md fixed-top bg-margins" style="height: 50px" >
+<nav class="navbar navbar-expand-md fixed-top">
   <div class="container-fluid" class="h-100 w-100 d-flex flex-row justify-content-between"> 
       <a id="logoLink" [routerLink]="'/'" [queryParams]="{ page: 1 }">
       <img *ngIf="!brokenImages['logo']; else useLogoText" id="logo" [src]="logoSrc" (error)="onImgError($event)" class="h-100 ms-2" />

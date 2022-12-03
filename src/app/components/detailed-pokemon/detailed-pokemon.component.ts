@@ -74,6 +74,8 @@ export class DetailedPokemonComponent {
   name!: string;
   types!: string;
   abilities!: string;
+  weight!: string;
+  height!: string;
   
   backgroundColourByType: { [key: string]: string } = {
     normal: "#A8A77A",
@@ -139,6 +141,17 @@ export class DetailedPokemonComponent {
         ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)
       ).join(", ");
       this.name = response.name.charAt(0).toUpperCase() + response.name.slice(1);
+      this.weight = `
+        ${(response.weight / 10).toFixed(1)} kg
+        (${(response.weight / 10 * 2.205).toFixed(1)} lbs)
+      `
+      const height: string = (response.height / 10).toFixed(1);
+      const inches: number = (response.height / 10) * 39.37;
+      const feet: number = Math.floor(inches / 12);
+      this.height = `
+        ${height} m
+        (${feet}'${(inches - feet * 12).toFixed(1)}")
+      `
     });     
   };
 }

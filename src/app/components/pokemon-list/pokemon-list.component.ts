@@ -42,7 +42,7 @@ export class PokemonListComponent {
     .subscribe(response => {
       this.pokemons = response.results
       if (response.results.length === 0) {
-        this.router.navigate([''], { queryParams: {page: 24} })
+        this.router.navigate([''], { queryParams: {page: 1} })
       }
     });  
   };
