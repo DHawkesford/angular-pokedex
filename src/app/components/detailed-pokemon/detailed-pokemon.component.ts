@@ -73,7 +73,7 @@ export class DetailedPokemonComponent {
   id!: string | null;
   name!: string;
   types!: string;
-  abilities!: string;
+  abilities!: string[];
   weight!: string;
   height!: string;
   
@@ -139,7 +139,7 @@ export class DetailedPokemonComponent {
       ).join(", ");
       this.abilities = response.abilities.map(ability => 
         ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)
-      ).join(", ");
+      );
       this.name = response.name.charAt(0).toUpperCase() + response.name.slice(1);
       this.weight = `
         ${(response.weight / 10).toFixed(1)} kg
