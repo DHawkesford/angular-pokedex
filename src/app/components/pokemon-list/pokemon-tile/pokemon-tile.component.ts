@@ -39,6 +39,7 @@ interface Pokemon {
 export class PokemonTileComponent {
   @Input() pokemon!: { name: string, url: string };
 
+  id!: number;
   pokemonId!: string;
   pokemonImage!: string;
 
@@ -58,7 +59,8 @@ export class PokemonTileComponent {
   getPokemon(): void {
     this.http.get<Pokemon>(this.pokemon.url)
     .subscribe(response => {
-      this.pokemonId = this.padNumber(response.id)
+      this.id = response.id;
+      this.pokemonId = this.padNumber(response.id);
       this.pokemonImage = response.sprites.other["official-artwork"].front_default;
     });    
   };
