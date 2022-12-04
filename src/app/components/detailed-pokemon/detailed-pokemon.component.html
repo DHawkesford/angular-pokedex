@@ -19,7 +19,7 @@
         <div class="d-flex flex-column p-2 m-1">
           <span>{{ types | titlecase }}</span>
           <span>{{ weight | pokemonWeight }}</span>
-          <span>{{this.height}}</span>
+          <span>{{ height | pokemonHeight }}</span>
           <span *ngFor="let ability of this.abilities">{{ ability | titlecase }}</span>
         </div>
       </div>

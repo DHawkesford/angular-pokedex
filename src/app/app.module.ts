@@ -11,6 +11,7 @@ import { DetailedPokemonComponent } from './components/detailed-pokemon/detailed
 import { FooterComponent } from './components/footer/footer.component';
 import { PokemonNumberPipe } from './pipes/pokemon-number.pipe';
 import { PokemonWeightPipe } from './pipes/pokemon-weight.pipe';
+import { PokemonHeightPipe } from './pipes/pokemon-height.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PokemonWeightPipe } from './pipes/pokemon-weight.pipe';
     DetailedPokemonComponent,
     FooterComponent,
     PokemonNumberPipe,
-    PokemonWeightPipe
+    PokemonWeightPipe,
+    PokemonHeightPipe
   ],
   imports: [
     BrowserModule,
