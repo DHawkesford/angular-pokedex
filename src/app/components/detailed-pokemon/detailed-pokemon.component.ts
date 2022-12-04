@@ -40,43 +40,14 @@ interface Pokemon {
   styleUrls: ['./detailed-pokemon.component.scss']
 })
 export class DetailedPokemonComponent {
-  details: Pokemon = {
-    abilities: [],
-    base_experience: 0,
-    forms: [],
-    game_indices: [],
-    height: 0,
-    held_items: [],
-    id: 0,
-    image: "Placeholder text",
-    is_default: true,
-    location_area_encounters: "Placeholder text",
-    moves: [],
-    name: "Placeholder text",
-    order: 0,
-    past_types: [],
-    species: {
-      name: "Placeholder text",
-      url: "Placeholder text"
-    },
-    sprites: {
-      other: {
-        "official-artwork": {
-          front_default: "Placeholder text"
-        }
-      }
-    },
-    stats: [],
-    types: [],
-    weight: 0
-  }
-  id!: string | null;
+  id!: string;
   name!: string;
   types!: string;
   abilities!: string[];
-  weight!: string;
+  weight!: number;
   height!: string;
   backgroundColourByType!: string;
+  stats!: { base_stat: number, stat: { name: string } }[];
   image!: string;
 
   typeColours: { [key: string]: string } = {
@@ -126,14 +97,16 @@ export class DetailedPokemonComponent {
       })
     )
     .subscribe(response => {
-      this.details = response
+      this.name = response.name
       this.image = response.sprites.other["official-artwork"].front_default;
       this.types = response.types.map(type => type.type.name).join(", ");
       this.abilities = response.abilities.map(ability => ability.ability.name);
-      this.weight = `
-        ${(response.weight / 10).toFixed(1)} kg
-        (${(response.weight / 10 * 2.205).toFixed(1)} lbs)
-      `
+      this.stats = response.stats
+      // this.weight = `
+      //   ${(response.weight / 10).toFixed(1)} kg
+      //   (${(response.weight / 10 * 2.205).toFixed(1)} lbs)
+      // `
+      this.weight = response.weight
       const height: string = (response.height / 10).toFixed(1);
       const inches: number = (response.height / 10) * 39.37;
       const feet: number = Math.floor(inches / 12);
@@ -141,7 +114,7 @@ export class DetailedPokemonComponent {
         ${height} m
         (${feet}'${(inches - feet * 12).toFixed(1)}")
       `
-      this.backgroundColourByType = this.typeColours[this.details.types[0].type.name]
+      this.backgroundColourByType = this.typeColours[response.types[0].type.name]
     });     
   };
 }
