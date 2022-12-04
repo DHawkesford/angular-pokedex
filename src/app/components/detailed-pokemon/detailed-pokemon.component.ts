@@ -136,13 +136,8 @@ export class DetailedPokemonComponent {
       this.details = response
       this.image = response.sprites.other["official-artwork"].front_default;
       this.details.id = this.padNumber(response.id)
-      this.types = response.types.map(type => 
-        type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)
-      ).join(", ");
-      this.abilities = response.abilities.map(ability => 
-        ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)
-      );
-      this.name = response.name.charAt(0).toUpperCase() + response.name.slice(1);
+      this.types = response.types.map(type => type.type.name).join(", ");
+      this.abilities = response.abilities.map(ability => ability.ability.name);
       this.weight = `
         ${(response.weight / 10).toFixed(1)} kg
         (${(response.weight / 10 * 2.205).toFixed(1)} lbs)
