@@ -10,7 +10,7 @@ interface Pokemon {
   game_indices: [],
   height: number,
   held_items: [],
-  id: number | string,
+  id: number,
   image: string,
   is_default: true,
   location_area_encounters: string,
@@ -41,6 +41,7 @@ interface Pokemon {
 })
 export class DetailedPokemonComponent {
   id!: string;
+  pokemonId!: number;
   name!: string;
   types!: string;
   abilities!: string[];
@@ -97,6 +98,7 @@ export class DetailedPokemonComponent {
       })
     )
     .subscribe(response => {
+      this.pokemonId = response.id
       this.name = response.name
       this.image = response.sprites.other["official-artwork"].front_default;
       this.types = response.types.map(type => type.type.name).join(", ");
