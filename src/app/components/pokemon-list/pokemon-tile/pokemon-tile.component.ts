@@ -39,8 +39,7 @@ interface Pokemon {
 export class PokemonTileComponent {
   @Input() pokemon!: { name: string, url: string };
 
-  id!: number;
-  pokemonId!: string;
+  pokemonId!: number;
   pokemonImage!: string;
 
   constructor(private http: HttpClient) { }
@@ -49,18 +48,10 @@ export class PokemonTileComponent {
     this.getPokemon();
   }
   
-  padNumber(id: number) {
-    let digits = id.toString().length;
-    if (digits === 1) {return `#00${id}`}
-    if (digits === 2) {return `#0${id}`}
-    return `#${id}`;
-  }
-
   getPokemon(): void {
     this.http.get<Pokemon>(this.pokemon.url)
     .subscribe(response => {
-      this.id = response.id;
-      this.pokemonId = this.padNumber(response.id);
+      this.pokemonId = response.id;
       this.pokemonImage = response.sprites.other["official-artwork"].front_default;
     });    
   };

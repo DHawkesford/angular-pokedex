@@ -1,7 +1,7 @@
-<a [routerLink]="['/pokemon', id]">
+<a [routerLink]="['/pokemon', pokemonId]">
   <div class="container-fluid d-flex flex-column p-1 my-0 align-items-center text-white fw-bold tile rounded">
-    <span>{{pokemonId}}</span>
-    <p class="text-capitalize">{{pokemon.name}}</p>
+    <span>{{ pokemonId | pokemonNumber }}</span>
+    <p class="text-capitalize">{{ pokemon.name }}</p>
     <img [src]="pokemonImage" class="w-75" />
   </div>
 </a>

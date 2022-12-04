@@ -116,13 +116,6 @@ export class DetailedPokemonComponent {
     private router: Router
   ) {}
 
-  padNumber(id: number | string) {
-    let digits = id.toString().length;
-    if (digits === 1) {return `#00${id}`}
-    if (digits === 2) {return `#0${id}`}
-    return `#${id}`;
-  }
-
   getDetails(id: string): void {
     this.http
     .get<Pokemon>(this.pokemonUrl + id)
@@ -135,7 +128,6 @@ export class DetailedPokemonComponent {
     .subscribe(response => {
       this.details = response
       this.image = response.sprites.other["official-artwork"].front_default;
-      this.details.id = this.padNumber(response.id)
       this.types = response.types.map(type => type.type.name).join(", ");
       this.abilities = response.abilities.map(ability => ability.ability.name);
       this.weight = `
