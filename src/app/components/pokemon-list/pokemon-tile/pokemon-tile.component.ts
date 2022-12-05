@@ -14,11 +14,11 @@ export class PokemonTileComponent {
 
   constructor(
     private pokeapiHttpService: PokeapiHttpService
-  ) {}
+  ) { };
 
   ngOnInit(): void {
     this.getPokemon();
-  }
+  };
   
   getPokemon(): void {
     this.pokeapiHttpService.getPokemonByUrl(this.pokemon.url)
@@ -27,4 +27,4 @@ export class PokemonTileComponent {
       this.pokemonImage = response.sprites.other["official-artwork"].front_default;
     });    
   };
-}
+};

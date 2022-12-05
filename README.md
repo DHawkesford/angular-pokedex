@@ -1,3 +1,9 @@
+# Notes
+
+- Deployed site: https://dangular-pokedex.netlify.app/
+
+- Figma wireframes: https://www.figma.com/file/15C3g57teb36W8CF9Lk4DE/Pokedex?node-id=0%3A1&t=J5d7AVgtbUTPOIRi-1
+
 # PokéAPI Directory 
 
 ## Prerequisite

@@ -12,8 +12,9 @@ export class NavbarComponent {
   brokenImages: { [key: string]: boolean } = {
     logo: false,
     repo: false
-  }
+  };
   
+  // If the src/assets/images link to the Pokedex logo or the GitHub logo is broken, onImgError will replace the logo with text (refer to the *ngIf directives used in the template)
   onImgError(error: ErrorEvent): void {
     console.error(error);
     const target = error.target as HTMLElement;

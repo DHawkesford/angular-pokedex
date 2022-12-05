@@ -3,16 +3,16 @@
     <a 
       *ngFor="let page of pagesArray" 
       [routerLink]="'/'" 
-      [queryParams]="{ page: page + 1 }" 
+      [queryParams]="{ page: page }" 
       class="page text-white page-button p-1 my-1 rounded fw-bold text-center"
       [ngClass]="
-        (page + 1).toString() === currentPage 
+        page.toString() === currentPage 
         || 
-        (url === '/' && page + 1 === 1)
+        (url === '/' && page === 1)
         ? 'current-page' : ''
       "
     >
-      {{page + 1}}
+      {{ page }}
     </a>
   </div>
 </footer>

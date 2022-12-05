@@ -46,7 +46,6 @@ interface Pokemon {
 })
 export class PokeapiHttpService {
   pokemons!: Pokemons;
-  count!: number;
   private pokemonUrl: string = "https://pokeapi.co/api/v2/pokemon";
 
   constructor(
@@ -56,16 +55,15 @@ export class PokeapiHttpService {
   getPokemons(offset: number = 0): Observable<Pokemons> {
     const options = {
       params: new HttpParams().set('limit', '50').set('offset', offset)
-    }
-
-    return this.http.get<Pokemons>(this.pokemonUrl, options)
+    };
+    return this.http.get<Pokemons>(this.pokemonUrl, options);
   };
 
   getPokemonById(id: string): Observable<Pokemon> {
-    return this.http.get<Pokemon>(this.pokemonUrl + '/' + id)
+    return this.http.get<Pokemon>(this.pokemonUrl + '/' + id);
   };
 
   getPokemonByUrl(url: string): Observable<Pokemon> {
-    return this.http.get<Pokemon>(url)
+    return this.http.get<Pokemon>(url);
   };
-}
+};

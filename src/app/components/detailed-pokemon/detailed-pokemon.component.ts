@@ -40,20 +40,23 @@ export class DetailedPokemonComponent {
     steel: "#B7B7CE",
     fairy: "#D685AD"
   }
-
-  ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get("id")!;
-    if (isNaN(Number(this.id))) {
-      this.router.navigate([''], { queryParams: {page: 1} })
-    }
-    this.getDetails(this.id);
-  }
   
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private pokeapiHttpService: PokeapiHttpService
-  ) {}
+  ) { };
+
+  ngOnInit(): void {
+    // Obtains the id parameter from the url, and obtains the details for that pokemon from the PokeAPI
+    // Redirects to the home page if the id provided is not a number (e.g. /pokemon/test)
+    this.id = this.route.snapshot.paramMap.get("id")!;
+    if (isNaN(Number(this.id))) {
+      this.router.navigate([''], { queryParams: { page: 1 } });
+    } else {
+      this.getDetails(this.id);
+    };
+  };
 
   getDetails(id: string): void {
     this.pokeapiHttpService.getPokemonById(id)
