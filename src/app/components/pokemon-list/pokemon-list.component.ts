@@ -1,14 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
-interface Pokemons {
-  count: number;
-  next: string | boolean;
-  previous: string | boolean;
-  results: { name: string, url: string }[];
-  test: number;
-}
+import { Router, ActivatedRoute } from '@angular/router';
+import { PokeapiHttpService } from "../../services/pokeapi-http.service";
 
 @Component({
   selector: 'app-pokemon-list',
@@ -20,12 +12,10 @@ export class PokemonListComponent {
   page: number = 1;
 
   constructor(
-    private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private pokeapiHttpService: PokeapiHttpService
   ) {}
-
-  private pokemonUrl = "https://pokeapi.co/api/v2/pokemon?limit=50&offset="
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -35,10 +25,10 @@ export class PokemonListComponent {
       const offset = 50 * (this.page - 1);
       this.getPokemons(offset);
     });
-  }
+  };
   
   getPokemons(offset: number): void {
-    this.http.get<Pokemons>(this.pokemonUrl + offset)
+    this.pokeapiHttpService.getPokemons(offset)
     .subscribe(response => {
       this.pokemons = response.results
       if (response.results.length === 0) {

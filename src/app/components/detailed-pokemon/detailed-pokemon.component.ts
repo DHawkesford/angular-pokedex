@@ -1,38 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from "rxjs/operators";
-
-interface Pokemon {
-  abilities: { ability: { name: string, url: string }}[],
-  base_experience: number,
-  forms: [],
-  game_indices: [],
-  height: number,
-  held_items: [],
-  id: number,
-  image: string,
-  is_default: true,
-  location_area_encounters: string,
-  moves: [],
-  name: string,
-  order: number,
-  past_types: [],
-  species: {
-    name: string,
-    url: string
-  },
-  sprites: {
-    other: {
-      "official-artwork": {
-        front_default: string
-      }
-    }
-  },
-  stats: { base_stat: number, stat: { name: string } }[],
-  types: { slot: number, type: { name: string, url: string}}[],
-  weight: number
-}
+import { PokeapiHttpService } from "../../services/pokeapi-http.service";
 
 @Component({
   selector: 'app-detailed-pokemon',
@@ -43,13 +12,13 @@ export class DetailedPokemonComponent {
   id!: string;
   pokemonId!: number;
   name!: string;
+  image!: string;
   types!: string;
   abilities!: string[];
+  stats!: { base_stat: number, stat: { name: string } }[];
   weight!: number;
   height!: number;
   backgroundColourByType!: string;
-  stats!: { base_stat: number, stat: { name: string } }[];
-  image!: string;
 
   typeColours: { [key: string]: string } = {
     normal: "#A8A77A",
@@ -72,8 +41,6 @@ export class DetailedPokemonComponent {
     fairy: "#D685AD"
   }
 
-  private pokemonUrl = "https://pokeapi.co/api/v2/pokemon/"
-
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("id")!;
     if (isNaN(Number(this.id))) {
@@ -83,14 +50,13 @@ export class DetailedPokemonComponent {
   }
   
   constructor(
-    private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private pokeapiHttpService: PokeapiHttpService
   ) {}
 
   getDetails(id: string): void {
-    this.http
-    .get<Pokemon>(this.pokemonUrl + id)
+    this.pokeapiHttpService.getPokemonById(id)
     .pipe(
       catchError(err => {
         this.router.navigate([''], { queryParams: {page: 1} })

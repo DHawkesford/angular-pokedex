@@ -20,7 +20,6 @@ export class FooterComponent {
 
   ngOnInit(): void {
     this.pokeapiHttpService.getPokemons().subscribe(response => {
-      console.log(response);
       const count = response.count
       const pages = Math.ceil(count / 50);
       this.pagesArray = [...Array(pages).keys()];
