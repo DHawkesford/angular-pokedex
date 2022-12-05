@@ -19,6 +19,7 @@ export class DetailedPokemonComponent {
   weight!: number;
   height!: number;
   backgroundColourByType!: string;
+  error404: boolean = false;
 
   typeColours: { [key: string]: string } = {
     normal: "#A8A77A",
@@ -61,8 +62,9 @@ export class DetailedPokemonComponent {
   getDetails(id: string): void {
     this.pokeapiHttpService.getPokemonById(id)
     .pipe(
+      // If the id provided does not exist (e.g. /pokemon/999999), PokeAPI will return a 404 error, and this will render a 404 message on the page (refer to the *ngIf directive in the template)
       catchError(err => {
-        this.router.navigate([''], { queryParams: {page: 1} })
+        this.error404 = true;
         throw 'Error:' + err;
       })
     )
@@ -78,4 +80,4 @@ export class DetailedPokemonComponent {
       this.backgroundColourByType = this.typeColours[response.types[0].type.name]
     });     
   };
-}
+};
