@@ -1,5 +1,5 @@
-import { createPlatform } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { NavbarComponent } from './navbar.component';
 
@@ -15,7 +15,8 @@ describe('NavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ]
+      declarations: [ NavbarComponent ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
 
@@ -93,7 +94,6 @@ describe('NavbarComponent', () => {
   it("links to the GitHub repo", () => {
     const spy = spyOn(window, "open");
     const link = fixture.debugElement.nativeElement.querySelector("a#repoLink");
-    console.log(fixture.debugElement.nativeElement.querySelector("a#repoLink"));
     link.click();
     expect(spy).toHaveBeenCalled();
   })

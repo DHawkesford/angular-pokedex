@@ -12,13 +12,17 @@ describe('AppComponent', () => {
   class NavbarStubComponent {
   }
 
+  @Component({selector: 'app-footer', template: ''})
+  class FooterStubComponent {
+  }
+
   @Component({selector: 'app-pokemon-list', template: ''})
   class PokemonListStubComponent {
   }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AppComponent, NavbarStubComponent ],
+      declarations: [ AppComponent, NavbarStubComponent, FooterStubComponent ],
       imports: [ RouterTestingModule.withRoutes(
         [{ path: '', component: PokemonListStubComponent }]
       )]
