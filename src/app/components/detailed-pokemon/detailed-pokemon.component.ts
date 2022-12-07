@@ -61,15 +61,15 @@ export class DetailedPokemonComponent {
 
   getDetails(id: string): void {
     this.pokeapiHttpService.getPokemonById(id)
-    .pipe(
-      // If the id provided does not exist (e.g. /pokemon/999999), PokeAPI will return a 404 error, and this will render a 404 message on the page (refer to the *ngIf directive in the template)
-      catchError(err => {
-        this.error404 = true;
-        throw 'Error:' + err;
-      })
-    )
+    // .pipe(
+    //   // If the id provided does not exist (e.g. /pokemon/999999), PokeAPI will return a 404 error, and this will render a 404 message on the page (refer to the *ngIf directive in the template)
+    //   catchError(err => {
+    //     this.error404 = true;
+    //     throw 'Error:' + err;
+    //   })
+    // )
     .subscribe(response => {
-      this.pokemonId = response.id
+      if(response !== null) {this.pokemonId = response.id
       this.name = response.name
       this.image = response.sprites.other["official-artwork"].front_default;
       this.types = response.types.map(type => type.type.name).join(", ");
@@ -77,7 +77,7 @@ export class DetailedPokemonComponent {
       this.stats = response.stats
       this.weight = response.weight
       this.height = response.height
-      this.backgroundColourByType = this.typeColours[response.types[0].type.name]
+      this.backgroundColourByType = this.typeColours[response.types[0].type.name]}
     });     
   };
 };

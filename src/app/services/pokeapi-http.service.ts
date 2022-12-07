@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { map } from 'rxjs';
+import { catchError } from "rxjs/operators";
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Pokemons {
   count: number;
@@ -44,12 +48,13 @@ interface Pokemon {
 @Injectable({
   providedIn: 'root'
 })
-export class PokeapiHttpService {
+export class PokeapiHttpService implements Resolve<Pokemon>{
   pokemons!: Pokemons;
   private pokemonUrl: string = "https://pokeapi.co/api/v2/pokemon";
 
   constructor(
     private http: HttpClient,
+    private router: Router
   ) {}
 
   getPokemons(offset: number = 0): Observable<Pokemons> {
@@ -60,10 +65,21 @@ export class PokeapiHttpService {
   };
 
   getPokemonById(id: string): Observable<Pokemon> {
-    return this.http.get<Pokemon>(this.pokemonUrl + '/' + id);
+    return this.http.get<Pokemon>(this.pokemonUrl + '/' + id).pipe(
+      catchError(err => {
+        console.log("navigating to home")
+        this.router.navigate([''], { queryParams: { page: 1 } });
+        throw 'Error:' + err;
+      }));
   };
 
   getPokemonByUrl(url: string): Observable<Pokemon> {
     return this.http.get<Pokemon>(url);
+  };
+
+  resolve(route: ActivatedRouteSnapshot): Observable<Pokemon> {
+    const id = route.paramMap.get('id') ?? '';
+    console.log("Resolving for pokemon with id: ", id);
+    return this.getPokemonById(id);
   };
 };
